@@ -16,10 +16,13 @@ services:
     container_name: rose-station
     ports:
     - "2222:22"
+    depends_on:
+    - mongodb
     volumes:
     - ${workspace_share}:/root/workspace
     networks:
     - app-network
+
   mongodb:
     image: mongo:7.0.5
     environment:
@@ -28,7 +31,7 @@ services:
       MONGO_INITDB_DATABASE: root-db
       SERVICE_PASSWORD: service
     ports:
-    - 27017:27017
+    - 27018:27017
     volumes:
     - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     - ${workspace_share}/db_data:/data/db
