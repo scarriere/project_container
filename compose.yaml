@@ -16,3 +16,5 @@ services:
     container_name: rose-station
     ports:
     - "2222:22"
+    volumes:
+    - ${workspace_share}:/root/workspace
