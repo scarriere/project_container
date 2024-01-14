@@ -1,7 +1,18 @@
+version: '2'
+
 services:
-  test:
+  # test:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #   - "3000:3000"
+  rose:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: rose.Dockerfile
+      args:
+      - AUTH_KEY=${authorized_keys}
+    container_name: rose-station
     ports:
-    - "3000:3000"
+    - "2222:22"
