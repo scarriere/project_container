@@ -33,13 +33,14 @@ services:
     ports:
     - 27018:27017
     volumes:
-    - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    - ${workspace_share}/db_init/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     - ${workspace_share}/db_data:/data/db
     networks:
     - app-network
 
 volumes:
   db_data:
+  db_init:
 
 networks:
   app-network:
